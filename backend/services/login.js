@@ -1,5 +1,7 @@
+import {invalidArgumentExeption} from '../exceptions/invalid_argument_exeception.js';
+
 export class LoginService{
-    async login(credentials){
+    static async login(credentials){
     if(!credentials
         ||!credentials.username
         ||!credentials.password
@@ -7,7 +9,7 @@ export class LoginService{
         || typeof credentials.password != 'string'
     ) {
        return {
-        error: 'Argumentos inválidos. ',
+        error: 'Argumentos invalidas.',
        };
     }
 
