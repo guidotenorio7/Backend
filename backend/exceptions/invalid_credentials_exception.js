@@ -1,6 +1,6 @@
 export class InvalidCredentialsException extends Error {
     constructor(){
-        super('Argumentos invalidos.');
+        super('Credenciales invalidas.');
         this.statusCode = 403;
     }
 }
