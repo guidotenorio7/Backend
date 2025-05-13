@@ -1,26 +1,31 @@
-export async function loginService(credentials){
+export class LoginService{
+    async login(credentials){
     if(!credentials
         ||!credentials.username
-        ||credentials.password
+        ||!credentials.password
         || typeof credentials.username != 'string'
         || typeof credentials.password != 'string'
-    )
-        throw new invalidargumentexceptions();
-        
+    ) {
+       return {
+        error: 'Argumentos inválidos. ',
+       };
     }
-    if(username !== 'admin'){
+
+    if(credentials.username !== 'admin'){
         return{
             error: ' credenciales invalidas.',
         
     };
 }
 
-if(password !== '1234'){
+if(credentials.password !== '1234'){
     return{
         error:'credenciales invalidas',
     };
 }
 
 return{
-    token:'token de acceso'
-};
+    token:'Token de acceso'
+    };
+}
+}
