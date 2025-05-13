@@ -1,6 +1,20 @@
-console.log("Hola mundo");
-for (let i = 1; i <= 10; i++){
-    console.log(`5 x ${i} = ${5 * i}`);
-}
+import express from 'express'
+import {controllers} from './controllers/controllers.js';
+import { logmiddleware } from './middlewares/log_middlewares.js';
 
-console.log('Chau Mundo!');
+const app = express();
+
+// Middleware para decodificar JSON del body
+app.use(express.json());
+app.use(logmiddleware);
+
+controllers(app);
+
+const PORT = 3000;
+app.listen(
+    PORT,
+    ()=>{
+        console.log(`servidor corriendo en http://localhost:${PORT}`);
+    }
+);
+
