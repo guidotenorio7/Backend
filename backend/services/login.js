@@ -1,4 +1,7 @@
-import {invalidArgumentExeption} from '../exceptions/invalid_argument_exeception.js';
+import { InvalidCredentialsException } from '../exceptions/invalid_credentials_exceptions.js'
+import { InvalidArgumentException } from '../exceptions/invalid_arguments_exception.js';
+import { UserService } from './user.js';
+import { getDependency } from '../libs/dependencies.js';
 
 export class LoginService{
     static async login(credentials){
@@ -7,26 +10,24 @@ export class LoginService{
         ||!credentials.password
         || typeof credentials.username != 'string'
         || typeof credentials.password != 'string'
-    ) {
-       return {
-        error: 'Argumentos invalidas.',
-       };
+    ){
+    throw new InvalidArgumentException();
     }
 
-    if(credentials.username !== 'admin'){
-        return{
-            error: ' credenciales invalidas.',
-        
-    };
-}
+    const UserService = getDependency('UserService');
+    const user = await UserService.getSingleOrNullByUsername(credentials.username);
+    if (!user)
+        throw new InvalidCredentialsException();
 
-if(credentials.password !== '1234'){
+    /*if(credentials.username !== 'admin'){
+       throw new InvalidCredentialsException();
+    }*/
+
+    if(credentials.password !== user.password){
+    throw new InvalidCredentialsException();
+    }
+
     return{
-        error:'credenciales invalidas',
-    };
-}
-
-return{
     token:'Token de acceso'
     };
 }
