@@ -1,4 +1,4 @@
-export function logMiddleware(reg, res, next){
+export function logMiddleware(req, res, next){
     const date = new Date()
     .toISOString()
     .replace('T', ' ')
@@ -8,7 +8,7 @@ export function logMiddleware(reg, res, next){
 
     const request = req.method + ' ' + req.url;
 
-    const body = JSON.stringify(...req.body);
+    const body = JSON.stringify({...req.body});
     if (body.password) {
         body.password = '********';
     }
