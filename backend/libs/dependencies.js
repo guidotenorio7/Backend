@@ -1,7 +1,11 @@
 const dependencies = {};
 
 export function getDependency(name) {
-    return dependencies[name];
+  if (!dependencies[name]) {
+    throw new Error(`Dependency ${name} not found`);
+  }
+  
+  return dependencies[name];
 }
 
 export function addDependency(name, dependency) {
