@@ -1,5 +1,5 @@
-import { InvalidArgumentException } from '../exceptions/invalid_argument_exception.js';
-import { InvalidCredemntialsException } from '../exceptions/invalid_credentials_exception.js';
+import { InvalidArgumentException } from '../exceptions/invalid_arguments_exception.js';
+import { InvalidCredentialsException } from '../exceptions/invalid_credentials_exceptions.js';
 import { getDependency } from '../libs/dependencies.js';
 import bcrypt from 'bcrypt';
 import config from '../config.js';
@@ -18,7 +18,7 @@ export class LoginService {
     const UserService = getDependency('UserService');
     const user = await UserService.getSingleOrNullByUsername(credentials.username);
     if (!user)
-      throw new InvalidCredemntialsException();
+      throw new InvalidCredentialsException();
 
     /*
     console.log('Calculando hash');
@@ -28,7 +28,7 @@ export class LoginService {
     */
 
     if (!(await bcrypt.compare(credentials.password, user.hashedPassword)))
-      throw new InvalidCredemntialsException();
+      throw new InvalidCredentialsException();
 
     const token = jwt.sign(
       {

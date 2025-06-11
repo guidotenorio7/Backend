@@ -5,6 +5,33 @@ export function user(app) {
   app.get(
     '/user',
     checkForRole('admin'),
-    async (req, res) => res.send(await UserService.get())
+    async (req, res) => {
+      const users = await UserService.get();
+      const result = users.map(user => ({
+        username: use.username,
+        fullName: user.fullName,
+        email: user.email,
+        roles: user.roles
+      }))
+    }
   );
+
+
+app.post(
+  '/user',
+  checkForRole('admin'),
+  async (req, res) => {
+    await UserService.create(req.body);
+    res.status(204).send();
+  }
+);
+
+app.delete(
+  '/user/:uuid',
+  checkForRole('admin'),
+  async(req, res) => {
+    await UserService.deleteByUuid(req.params.uuid);
+    res.status(204).send();
+  }
+);
 }
