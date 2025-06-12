@@ -8,7 +8,7 @@ export function user(app) {
     async (req, res) => {
       const users = await UserService.get();
       const result = users.map(user => ({
-        username: use.username,
+        username: user.username,
         fullName: user.fullName,
         email: user.email,
         roles: user.roles

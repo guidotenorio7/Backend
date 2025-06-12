@@ -3,28 +3,35 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "operator",
-  "password": "1234"
-}
-
-###
-
-POST http://localhost:3000/api/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "username": "admin01",
-  "password": "1234"
-}
-
-###
-
-POST http://localhost:3000/api/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "username": "",
+  "username": "admin",
   "password": "12345"
 }
+
+### 
+
+GET http://localhost:3000/api/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODRhM2MwYmZhMTU1MGQ0NDUyM2EzNzgiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbmlzdHJhZG9yIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzQ5Njk4ODY4LCJleHAiOjE3NDk3MDI0Njh9.BBKKknXspAs18lB_SryfX-h0XTDoDmbyGT6X9rq2g4I
+Content-Type: application/json
+
+### 
+
+POST http://localhost:3000/api/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODRhNGFkYWRhNjZjMDg4YTI5NDIwODAiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbmlzdHJhZG9yIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzQ5NzAwMjIxLCJleHAiOjE3NDk3MDM4MjF9.-lqS0Jsd135EKJOaL6R5LooFXJ8RZqipDicXa9_0tZI
+Content-Type: application/json
+
+{
+  "username": "usuario2",
+  "password": "12345",
+  "fullName": "Operator",
+  "roles": ["admin"],
+  "email": "operator@fake.com"
+}
+
+###
+
+DELETE http://localhost:3000/api/user/94e42ee8-7e2a-4c4b-899a-06d52500e6f9
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODRhM2MwYmZhMTU1MGQ0NDUyM2EzNzgiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbmlzdHJhZG9yIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzQ5Njk4ODY4LCJleHAiOjE3NDk3MDI0Njh9.BBKKknXspAs18lB_SryfX-h0XTDoDmbyGT6X9rq2g4I
+Content-Type: application/json
