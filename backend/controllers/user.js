@@ -8,11 +8,13 @@ export function user(app) {
     async (req, res) => {
       const users = await UserService.get();
       const result = users.map(user => ({
+        uuid: user.uuid,
         username: user.username,
         fullName: user.fullName,
         email: user.email,
         roles: user.roles
-      }))
+      }));
+      res.send|(result);
     }
   );
 
