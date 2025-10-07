@@ -18,3 +18,4 @@ export default function configureMiddlewares(router) {
   
   router.use(errorHandlerMiddleware);
 }
+
