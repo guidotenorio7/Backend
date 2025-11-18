@@ -14,7 +14,7 @@ export function user(app) {
         email: user.email,
         roles: user.roles
       }));
-      res.send|(result);
+      res.send(result);
     }
   );
 
